@@ -1,13 +1,13 @@
 {
   "saudacoes": {
-    "perguntas": ["oi", "olÃ¡", "bom dia", "boa tarde", "boa noite"],
-    "respostas": ["OlÃ¡!", "Oi, como posso ajudar?", "Pois nÃ£o, como posso ajudar?"]
+    "perguntas": ["oi", "olá¡", "bom dia", "boa tarde", "boa noite"],
+    "respostas": ["OlÁ¡!", "Oi, como posso ajudar?", "Pois não, como posso ajudar?"]
   },
   "informacoes_tempo": {
-    "perguntas": ["qual a previsÃ£o do tempo?", "tempo", "chover", "como estÃ¡ o tempo hoje?"],
-    "respostas": ["Desculpe, ainda nÃ£o sei informar o tempo.", 
-                  "NÃ£o tenho acesso a informaÃ§Ãµes meteorolÃ³gicas.", 
-                  "Acho que NÃ£o irÃ¡ chover."]
+    "perguntas": [ "tempo", "chover"],
+    "respostas": ["Desculpe, ainda não sei informar o tempo.", 
+                  "Náo tenho acesso a informações meteorológicas.", 
+                  "Acho que não vai chover."]
   },
     "ajuda":{
         "perguntas": ["pode me ajudar?", "ajuda", "como usar isso?"],
@@ -16,8 +16,8 @@
 
   },
     "monetizacao":{
-        "perguntas": ["preÃ§o", "custa", "valor"],
-        "respostas": ["Cada kit sai por $20 dÃ³lares." 
+        "perguntas": ["preço", "custa", "valor"],
+        "respostas": ["Cada kit sai por R$25,00 ." 
                       ]
 
                        },
@@ -28,14 +28,14 @@
     },
     "imagem":{
         "perguntas": ["foto", "modelo", "mascote"],
-        "respostas":  [ "Infelizmente a gente nÃ£o tem nenhuma foto."]
+        "respostas":  [ "Infelizmente a gente não tenho."]
                             
     },
     "despedida":{
-        "perguntas": ["tchau", "atÃ© logo", "adeus", "obrigado"],
-        "respostas": ["Tchau tchau!", "AtÃ© a prÃ³xima!", "De nada."]
+        "perguntas": ["tchau", "até logo", "ok", "obrigado"],
+        "respostas": ["Tchau tchau!", "Até a próxima!", "Por nada."]
     },
     "fallback":{
-        "respostas": ["Desculpe, nÃ£o entendi.", "Poderia reformular a pergunta?"]
+        "respostas": ["Desculpe, não entendi.", "Poderia reformular a pergunta?"]
     }
 }
