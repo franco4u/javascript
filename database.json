@@ -1,0 +1,41 @@
+{
+  "saudacoes": {
+    "perguntas": ["oi", "olÃ¡", "bom dia", "boa tarde", "boa noite"],
+    "respostas": ["OlÃ¡!", "Oi, como posso ajudar?", "Pois nÃ£o, como posso ajudar?"]
+  },
+  "informacoes_tempo": {
+    "perguntas": ["qual a previsÃ£o do tempo?", "tempo", "chover", "como estÃ¡ o tempo hoje?"],
+    "respostas": ["Desculpe, ainda nÃ£o sei informar o tempo.", 
+                  "NÃ£o tenho acesso a informaÃ§Ãµes meteorolÃ³gicas.", 
+                  "Acho que NÃ£o irÃ¡ chover."]
+  },
+    "ajuda":{
+        "perguntas": ["pode me ajudar?", "ajuda", "como usar isso?"],
+        "respostas": ["Claro! Pergunte-me qualquer coisa.", 
+                      "Estou aqui para ajudar."]
+
+  },
+    "monetizacao":{
+        "perguntas": ["preÃ§o", "custa", "valor"],
+        "respostas": ["Cada kit sai por $20 dÃ³lares." 
+                      ]
+
+                       },
+    "links":{
+        "perguntas": ["link", "site", "endereço"],
+        "respostas":  [ "http://index.htm", "http;//localhost/chatbot"]
+
+    },
+    "imagem":{
+        "perguntas": ["foto", "modelo", "mascote"],
+        "respostas":  [ "Infelizmente a gente nÃ£o tem nenhuma foto."]
+                            
+    },
+    "despedida":{
+        "perguntas": ["tchau", "atÃ© logo", "adeus", "obrigado"],
+        "respostas": ["Tchau tchau!", "AtÃ© a prÃ³xima!", "De nada."]
+    },
+    "fallback":{
+        "respostas": ["Desculpe, nÃ£o entendi.", "Poderia reformular a pergunta?"]
+    }
+}
