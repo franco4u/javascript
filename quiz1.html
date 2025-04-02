@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz de Variedades</title>
+    <style>
+        body {
+            font-family: Corsive, Arial, sans-serif;
+            background-color: #ff6600;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ff9955;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .question {
+            margin-top: 20px;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .result p {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz de Variedades</h1>
+        <form id="quizForm">
+            <div class="question">
+                <p>1. Qual é a capital do Brasil?</p>
+                <input type="radio" name="q1" value="Brasília"> Brasília<br>
+                <input type="radio" name="q1" value="Rio de Janeiro"> Rio de Janeiro<br>
+                <input type="radio" name="q1" value="São Paulo"> São Paulo<br>
+                <input type="radio" name="q1" value="Salvador"> Salvador<br>
+            </div>
+
+            <div class="question">
+                <p>2. Qual é o maior mamífero do mundo?</p>
+                <input type="radio" name="q2" value="Elefante"> Elefante<br>
+                <input type="radio" name="q2" value="Baleia Azul"> Baleia Azul<br>
+                <input type="radio" name="q2" value="Girafa"> Girafa<br>
+                <input type="radio" name="q2" value="Hipopótamo"> Hipopótamo<br>
+            </div>
+
+            <div class="question">
+                <p>3. Quem pintou a Mona Lisa?</p>
+                <input type="radio" name="q3" value="Vincent van Gogh"> Vincent van Gogh<br>
+                <input type="radio" name="q3" value="Pablo Picasso"> Pablo Picasso<br>
+                <input type="radio" name="q3" value="Leonardo da Vinci"> Leonardo da Vinci<br>
+                <input type="radio" name="q3" value="Claude Monet"> Claude Monet<br>
+            </div>
+
+            <div class="question">
+                <p>4. Qual planeta é conhecido como o Planeta Vermelho?</p>
+                <input type="radio" name="q4" value="Terra"> Terra<br>
+                <input type="radio" name="q4" value="Marte"> Marte<br>
+                <input type="radio" name="q4" value="Júpiter"> Júpiter<br>
+                <input type="radio" name="q4" value="Saturno"> Saturno<br>
+            </div>
+
+            <div class="question">
+                <p>5. Qual é a fórmula química da água?</p>
+                <input type="radio" name="q5" value="H2O"> H2O<br>
+                <input type="radio" name="q5" value="CO2"> CO2<br>
+                <input type="radio" name="q5" value="NaCl"> NaCl<br>
+                <input type="radio" name="q5" value="O2"> O2<br>
+            </div>
+
+            <div class="result" id="resultadoQuiz"></div>
+            <div class="result" id="estatisticasQuiz"></div>
+
+            <button type="button" onclick="submitQuiz()">Enviar Respostas</button>
+        </form>
+    </div>
+
+    <script>
+        function submitQuiz() {
+            var respostasCorretas = {
+                q1: "Brasília",
+                q2: "Baleia Azul",
+                q3: "Leonardo da Vinci",
+                q4: "Marte",
+                q5: "H2O"
+            };
+
+            var form = document.getElementById('quizForm');
+            var resultadoDiv = document.getElementById('resultadoQuiz');
+            var estatisticasDiv = document.getElementById('estatisticasQuiz');
+            var totalCorretas = 0;
+
+            for (var key in respostasCorretas) {
+                var radios = document.getElementsByName(key);
+                for (var i = 0; i < radios.length; i++) {
+                    if (radios[i].checked) {
+                        if (radios[i].value === respostasCorretas[key]) {
+                            totalCorretas++;
+                        }
+                    }
+                }
+            }
+
+            var totalPerguntas = Object.keys(respostasCorretas).length;
+            var porcentagemCorretas = (totalCorretas / totalPerguntas) * 100;
+
+            resultadoDiv.innerHTML = "<p>Você acertou " + totalCorretas + " de " + totalPerguntas + " perguntas.</p>";
+            estatisticasDiv.innerHTML = "<p>Porcentagem de acertos: " + porcentagemCorretas + "%</p>";
+
+            for (var key in respostasCorretas) {
+                var resposta = respostasCorretas[key];
+                estatisticasDiv.innerHTML += "<p>Resposta correta para a pergunta " + key.substr(1) + ": " + resposta + "</p>";
+            }
+        }
+    </script>
+</body>
+</html>

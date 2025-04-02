@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<link rel="canonical" href="https://" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Gerador de piadas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffcc70, #ff6699, #66ccff);
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        #joke {
+            font-size: 20px;
+            color: #444;
+            background: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 400px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #jokeImage {
+            display: block;
+            margin: 20px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        footer button {
+            background-color: #28a745;
+            margin-top: 10px;
+            padding: 10px 15px;
+        }
+
+        footer button:hover {
+            background-color: #218838;
+        }
+
+        .articles-section {
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+        }
+
+        .articles-section h2 {
+            font-size: 24px;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        .article {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+
+        .article:last-child {
+            border-bottom: none;
+        }
+
+        .article h3 {
+            font-size: 20px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .article p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .article a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .article a:hover {
+            text-decoration: underline;
+        }
+		
+		#shareButton {
+            margin-top: 20px;
+        }
+
+    </style>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</script>
+
+
+</head>
+<body>
+    <h1>Piada Curta Engraçada Gerador</h1>
+    <div id="joke">Clique no botão abaixo para gerar uma piada!</div>
+
+    <div id="buttons">
+        <button onclick="generateJoke()">Gerar Piada</button>
+        <button onclick="copyJoke()">Copiar Piada</button>
+        <button onclick="downloadImage()">Baixar Imagem</button>
+    </div>
+
+    <canvas id="jokeImage" width="400" height="400" style="display:none;"></canvas>
+	<div class="social-sharing">
+  <button id="shareButton" onclick="shareWebsite()">Compartilhar</button>
+  
+</div>
+
+
+
+
+    <footer>
+        Feito por <strong>franco4u.com</strong>
+        <br>
+        <button onclick="openContact()">Contato</button>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <h3>Contato</h3>
+            <input type="text" id="name" placeholder="Seu Nome" />
+            <input type="email" id="email" placeholder="Seu Email" />
+            <textarea id="message" placeholder="Sua Mensagem" rows="4"></textarea>
+            <button onclick="closeContact()">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+        const jokes = [
+    "Por que o livro de matemática se suicidou? Porque tinha muitos problemas! 😂📚",
+    "O que é um vegetariano que come carne? Um ex-vegetariano! 🍖🥦",
+    "Como o elétron atende ao telefone? Alô? Alô? Está me ouvindo? 📞⚡",
+    "Por que o computador foi ao médico? Porque estava com um vírus! 💻🤒",
+    "O que a vaca foi fazer no espaço? Foi conhecer a via láctea! 🐄🚀",
+    "Por que a bicicleta caiu? Porque estava sem equilíbrio! 🚲😆",
+    "O que o tomate foi fazer no banco? Tirar o extrato! 🍅💳",
+    "Por que o fotógrafo foi preso? Porque foi pego em flagrante! 📸🚔",
+    "Como o ketchup se apresenta? Muito prazer, ketchupe! 🍅😁",
+    "Por que o relógio foi ao terapeuta? Ele estava perdendo tempo! 🕰️🛋️",
+    "O que o chão falou para a mesa? Suporte-me, por favor. 🪑🛋️",
+    "Por que o boi foi para o espelho? Para se ver vaca-nte. 🐂🪞",
+    "O que o zero disse para o oito? Que cinto estiloso! 0️⃣8️⃣😄",
+    "Por que o jacaré tirou o pé da lama? Porque estava atolado! 🐊💦",
+    "Por que o café foi ao psicólogo? Porque estava espresso. ☕🧠",
+    "O que é um pontinho vermelho no meio do mar? Um tomate navegante. 🍅🌊",
+    "Por que a ostra nunca divide seu tesouro? Porque é muito fechada! 🦪💎",
+    "O que o tijolo falou para o outro? Há um clima de construção no ar! 🧱👷‍♂️",
+    "Por que a manteiga não vai à praia? Porque ela derrete no sol. 🧈☀️",
+    "Como se chama um boi dormindo? Boi-sono. 🐂💤",
+    "O que a planta falou para o jardineiro? Não me corte, estou na flor da idade! 🌿🌸",
+    "Por que o pato não gosta de jogar baralho? Porque ele odeia trapaça! 🦆🃏",
+    "Por que o gato entrou na internet? Para navegar na rede. 🐱💻",
+    "O que a banana disse para o morango? Você é muito doce! 🍌🍓",
+    "Como o papel se despede? Papel até mais ver! 📝👋",
+    "Por que a aranha é boa no computador? Porque entende de web. 🕷️💻",
+    "O que o milho disse para a pipoca? Nossa, você mudou muito! 🌽🍿",
+    "Por que o boi não usa fone de ouvido? Porque ele só tem ouvido de boi! 🐂🎧",
+    "Por que o sapo não lava o pé? Porque não quer, ué! 🐸🦶",
+    "Qual é a música preferida do pão? É pão, pão, pão... pão de cada dia! 🍞🎶",
+    "O que o elevador disse para a escada? Subo mais rápido! 🛗⏩",
+    "Por que o cavalo foi ao psicólogo? Porque estava com um trote estranho! 🐴🛋️",
+    "Por que o pássaro não fez a lição de casa? Porque ele estava voando. 🦅📚",
+    "O que o peixe falou para o outro? Nada. 🐟💬",
+    "Por que a lâmpada foi ao médico? Porque estava sem energia! 💡🩺",
+    "Por que o carro foi ao spa? Para desestressar o motor! 🚗🛁",
+    "Por que a cama estava brigando? Porque estava de mau lençol. 🛏️😡",
+    "Por que o astrônomo levou uma toalha para o espaço? Porque ia ver o sol nascer quadrado. 🌌🌞",
+    "Por que o alfaiate nunca está satisfeito? Porque ele sempre quer dar um ajuste. 👔✂️",
+    "Como se chama uma piada ruim? Piada ruim mesmo. 😅👎",
+    "Por que o cachorro foi no dentista? Porque tinha uma cárie de cachorro-quente! 🐶🦷",
+    "O que o cachorro disse para o poste? Estou muito ligado a você! 🐕📍",
+    "Por que a árvore foi ao dentista? Porque tinha um problema de raiz. 🌳🦷",
+    "Por que o pinguim não gosta de calor? Porque derrete na pressão! 🐧🌞",
+    "Qual é o doce favorito do astronauta? Marshmellow na via láctea! 🍬🚀",
+    "Por que o livro de geografia foi reprovado? Porque tirou notas baixas em todos os mapas. 🌍📉",
+    "O que o pato disse ao outro? Quack, quack! 🦆🎤",
+    "Por que o jacaré é bom motorista? Porque ele não anda em ziguezague. 🐊🚗",
+    "Como se chama um peixe no teclado? Peixe-espada. 🐠⌨️",
+    "Por que a lua nunca se apaixona? Porque tem medo de cair na Terra! 🌕💔",
+    "Por que o rato foi ao psicólogo? Para roer seus problemas! 🐭🧠",
+    "O que o sol falou para a nuvem? Você está ofuscando o meu brilho! ☀️☁️",
+    "Como o gato cumprimenta? Miau-dia! 🐱👋",
+    "Por que a formiga é rica? Porque ela tem um formigueiro cheio de ouro! 🐜💰",
+    "Qual é o animal mais relaxado? O boi, porque está deitado em pastos verdes. 🐂🌱",
+    "Por que o lápis foi à escola? Para aprender a escrever direitinho. ✏️🏫",
+    "Por que o garfo foi ao tribunal? Para enfrentar o prato! 🍴⚖️",
+    "O que a cebola disse para o cozinheiro? Não me corte, estou chorando! 🧅😭",
+    "Por que o passarinho não foi ao show? Porque ele perdeu a asa da entrada. 🦜🎶",
+    "O que o avião falou para o aeroporto? Fique firme, estou chegando! ✈️🛬",
+    "Por que o ventilador nunca está calmo? Porque ele vive girando ideias! 🌬️💡",
+    "Por que o dinossauro não usa celular? Porque ele é um dinossauro. 🦖📵"
+];
+
+
+        function generateJoke() {
+            const jokeIndex = Math.floor(Math.random() * jokes.length);
+            const jokeText = jokes[jokeIndex];
+            document.getElementById('joke').textContent = jokeText;
+            generateImage(jokeText);
+        }
+
+        function copyJoke() {
+            const joke = document.getElementById('joke').textContent;
+            navigator.clipboard.writeText(joke).then(() => alert('Piada copiada!'));
+        }
+
+        function generateImage(jokeText) {
+            const canvas = document.getElementById('jokeImage');
+            const ctx = canvas.getContext('2d');
+            const randomColor = `hsl(${Math.random() * 360}, 50%, 70%)`;
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Background
+            ctx.fillStyle = randomColor;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Text
+            ctx.fillStyle = "#000";
+            ctx.font = "18px Arial";
+            ctx.textAlign = "center";
+            const lines = wrapText(ctx, jokeText, canvas.width - 20);
+            lines.forEach((line, i) => {
+                ctx.fillText(line, canvas.width / 2, canvas.height / 2 + i * 24 - lines.length * 12);
+            });
+
+            // Domain Name
+            ctx.font = "14px Arial";
+            ctx.fillText("franco4u.com", canvas.width / 2, canvas.height - 20);
+
+            document.getElementById('jokeImage').style.display = 'block';
+        }
+      
+      function shareWebsite() {
+    const url = "https://franco4u.github.com";
+    const title = "Piada Curta ";
+    const text = "Confira piadas curtas e engraçadas para alegrar seu dia!";
+
+    if (navigator.share) {
+        navigator.share({ title, text, url })
+            .then(() => console.log('Website compartilhado com sucesso!'))
+            .catch((error) => console.log('Erro ao compartilhar:', error));
+    } else {
+        navigator.clipboard.writeText(url)
+            .then(() => alert('URL copiado para a área de transferência!'))
+            .catch(() => alert('Falha ao copiar o URL.'));
+    }
+}
+
+
+        function wrapText(ctx, text, maxWidth) {
+            const words = text.split(' ');
+            const lines = [];
+            let line = '';
+            words.forEach((word) => {
+                const testLine = `${line}${word} `;
+                const testWidth = ctx.measureText(testLine).width;
+                if (testWidth > maxWidth && line) {
+                    lines.push(line.trim());
+                    line = `${word} `;
+                } else {
+                    line = testLine;
+                }
+            });
+            lines.push(line.trim());
+            return lines;
+        }
+
+        function downloadImage() {
+            const canvas = document.getElementById('jokeImage');
+            const link = document.createElement('a');
+            link.download = 'piada.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+
+        function openContact() {
+            document.getElementById('contactModal').style.display = 'flex';
+        }
+
+        function closeContact() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
+      
+      // Display a random joke when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    generateJoke();
+});
+	
+     
+
+
+    </script>
+</body>
+</html>
